@@ -1,0 +1,26 @@
+
+        <title>{% block title %}{% endblock %}</title>
+        
+
+        {% block stylesheets %}
+            
+        {% endblock %}
+
+        {% block javascripts %}
+            
+        {% endblock %}
+    </head>
+    <body>
+        <!-- entête -->
+        {% block top  %} 
+        <div class="container">
+            <div class="text-center">
+                <h1>Mes voyages</h1>
+                <p>voici les villes que j'ai visitées</p>
+        {% endblock %}
+        <!-- corps -->
+        
+            {% block body  %} {% endblock %}
+        
+    </body>
+</html>
