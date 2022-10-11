@@ -6,9 +6,11 @@
  */
 
 namespace App\Controller;
+use App\Repository\VisiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * Description of AccueilController
@@ -16,6 +18,23 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author joueu
  */
 class VoyagesController extends AbstractController {
+    
+ /**
+ * 
+ * @var VisiteRepository
+ */
+private $repository;
+
+
+/**
+ * 
+ * @param \VisiteRepository $repository
+ */
+public function __construct(VisiteRepository $repository) {
+    $this->repository = $repository;
+    
+}
+
     //put your code here
     /**
      * 
@@ -23,6 +42,13 @@ class VoyagesController extends AbstractController {
      * @return Response
      */
     public function index() : Response{
-        return $this->render('pages/voyages.html.twig');
+        $visites = $this->repository->findAllOrderBy('datecreation', 'DESC');
+        return $this->render('pages/voyages.html.twig', [
+        'visites' => $visites ]);
+    }
+    
+    public function sort($champ, $ordre): Response{
+        $visites = $this->repository->findAllOrderBy($champ, $ordre);
+        return $this->render("pages/voyages.html.twig", ['visites' => $visites]);
     }
 }
