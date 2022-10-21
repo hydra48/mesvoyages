@@ -3,10 +3,16 @@
     <table class="table table-striped">
         <thread>
             <tr>
-                <th class="text-left" scope="col">Ville<a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a><a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a></th>
-                <th class="text-left" scope="col">Pays</th>
-                <th class="text-end" scope="col">Note</th>
-                <th class="text-center" scope="col">Date</th>
+                <th class="text-left alig-top" scope="col">Ville<a href="{{ path('voyages.sort',{champ:'ville',ordre:'ASC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a><a href="{{ path('voyages.sort',{champ:'ville',ordre:'DESC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a></th>
+                <form class="form-inline mt-1" method="POST" action="{{ path('voyages.findallequal', {champ:'ville'}) }}">
+                    <div class="form-group mr-1 mb-2">
+                        <input type="text" class="sm" name="recherche">
+                        <button type="submit" class="btn btn-primary mb-2 btn-sm">filter</button>
+                    </div>
+                </form>
+                <th class="text-left alig-top" scope="col">Pays</th>
+                <th class="text-end alig-top" scope="col">Note</th>
+                <th class="text-center alig-top" scope="col">Date</th>
             </tr>
         </thread>
         <tbody>
@@ -14,7 +20,7 @@
                 <tr>
                     <td>
                         <h5 class="text-primary">
-                            <a href="#">{{ visite.ville }}</a>
+                            <a href="{{ path('voyages.showone',{id:visite.id}) }}">{{ visite.ville }}</a>
                         </h5>
                     </td>
                     <td>
